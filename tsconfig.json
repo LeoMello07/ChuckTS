@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["ES2017"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-native",
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "lib",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "chuckts": ["src/index.ts"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "lib", "__tests__", "example"]
+}

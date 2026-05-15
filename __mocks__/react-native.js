@@ -1,0 +1,30 @@
+// Minimal react-native mock for unit tests
+module.exports = {
+  Platform: { OS: 'ios', select: (obj) => obj.ios ?? obj.default },
+  StyleSheet: { create: (styles) => styles },
+  View: 'View',
+  Text: 'Text',
+  TextInput: 'TextInput',
+  TouchableOpacity: 'TouchableOpacity',
+  FlatList: 'FlatList',
+  ScrollView: 'ScrollView',
+  Modal: 'Modal',
+  SafeAreaView: 'SafeAreaView',
+  Dimensions: { get: () => ({ width: 390, height: 844 }) },
+  Animated: {
+    Value: class { constructor(v) { this._value = v; } },
+    ValueXY: class { constructor(v) { this._value = v; this.x = { _value: v.x }; this.y = { _value: v.y }; } setValue() {} setOffset() {} flattenOffset() {} },
+    timing: () => ({ start: (cb) => cb && cb() }),
+    spring: () => ({ start: (cb) => cb && cb() }),
+    sequence: () => ({ start: (cb) => cb && cb() }),
+    event: () => jest.fn(),
+    View: 'Animated.View',
+  },
+  PanResponder: {
+    create: () => ({ panHandlers: {} }),
+  },
+  Share: { share: jest.fn().mockResolvedValue(undefined) },
+  Alert: { alert: jest.fn() },
+  StatusBar: { setBarStyle: jest.fn() },
+  Clipboard: { setString: jest.fn(), getString: jest.fn().mockResolvedValue('') },
+};
