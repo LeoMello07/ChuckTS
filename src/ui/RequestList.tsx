@@ -12,7 +12,7 @@ import { useChuckTSStore, getFilteredRecords } from '../store';
 import { HttpRecord } from '../types';
 import { colors, font, spacing, radius, methodColor, statusColor, statusBg } from './theme';
 import { generateCurl } from '../core/curlGenerator';
-import Clipboard from '@react-native-clipboard/clipboard';
+import { copyToClipboard } from '../utils/clipboard';
 
 const METHOD_FILTERS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'];
 const STATUS_FILTERS = ['2xx', '3xx', '4xx', '5xx'];

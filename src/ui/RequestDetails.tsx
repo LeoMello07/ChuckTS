@@ -6,9 +6,8 @@ import {
   ScrollView,
   StyleSheet,
   Share,
-  Alert,
 } from 'react-native';
-import Clipboard from '@react-native-clipboard/clipboard';
+import { copyToClipboard } from '../utils/clipboard';
 import { HttpRecord } from '../types';
 import { JsonViewer } from './JsonViewer';
 import { colors, font, spacing, radius, methodColor, statusColor, statusBg } from './theme';
@@ -24,16 +23,14 @@ type Tab = 'request' | 'response' | 'raw';
 export function RequestDetails({ record, onClose }: RequestDetailsProps): React.ReactElement {
   const [tab, setTab] = useState<Tab>('request');
 
-  const copyCurl = useCallback(() => {
+  const copyCurl = useCallback(async () => {
     const curl = generateCurl(record);
-    Clipboard.setString(curl);
-    Alert.alert('Copied', 'cURL command copied to clipboard');
+    await copyToClipboard(curl);
   }, [record]);
 
-  const copyBody = useCallback((body: string | null) => {
+  const copyBody = useCallback(async (body: string | null) => {
     if (!body) return;
-    Clipboard.setString(body);
-    Alert.alert('Copied', 'Payload copied to clipboard');
+    await copyToClipboard(body);
   }, []);
 
   const shareLogs = useCallback(async () => {
